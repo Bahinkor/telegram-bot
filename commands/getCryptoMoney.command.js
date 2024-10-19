@@ -1,5 +1,6 @@
 const digitalCoinController = require("../controllers/digitalCoin.controller");
 const cryptoConverter = require("./../utils/cryptoConverter.util");
+const getDate = require("./../utils/getDate.util");
 
 module.exports = async ctx => {
     const text = ctx.update.message.text;
@@ -19,6 +20,7 @@ module.exports = async ctx => {
     }
 
     const coinPrice = coinData.market_data.current_price.usd;
+    const date = getDate();
 
-    ctx.reply(`${coinPrice}$`);
+    ctx.reply(`💰 1 ${coinData.name} = $${coinPrice}\n💵 Rank: ${coinData.market_cap_rank}\n\n🕐 UTC Date: ${date}`);
 };
