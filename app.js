@@ -13,7 +13,7 @@ bot.start(startCommand);
 bot.help(helpCommand);
 bot.action("addToGroup", addToGroupCommand);
 bot.on("new_chat_members", newGroupWelcomeMessageCommand);
-bot.on("text", getCryptoMoneyCommand);
+bot.hears(/^\/crypto */i, getCryptoMoneyCommand);
 
 bot.launch()
     .then(() => console.log("Bot is running..."))

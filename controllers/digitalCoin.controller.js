@@ -1,6 +1,6 @@
-exports.getDigitalCoinData = async (coin) => {
+exports.getDigitalCoinData = async (cryptoName) => {
     try {
-        const url = `https://api.coingecko.com/api/v3/coins/${coin}`;
+        const url = `https://api.coingecko.com/api/v3/coins/${cryptoName.toLowerCase()}`;
         const options = {
             method: "GET", headers: {
                 accept: "application/json",
