@@ -20,7 +20,8 @@ module.exports = async ctx => {
     }
 
     const coinPrice = coinData.market_data.current_price.usd;
-    const date = getDate();
+    const UTCDate = getDate.getUTCDate();
+    const IRDate = getDate.getIRDate();
 
-    ctx.reply(`💰 1 ${coinData.name} = $${coinPrice}\n💵 Rank: ${coinData.market_cap_rank}\n\n🕐 UTC Date: ${date}`);
+    ctx.reply(`💰 1 ${coinData.name} = $${coinPrice}\n💵 Rank: ${coinData.market_cap_rank}\n\n🕐 UTC Date: ${UTCDate}\n🕐 IR Date: ${IRDate}`);
 };
