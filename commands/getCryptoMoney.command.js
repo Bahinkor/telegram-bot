@@ -22,7 +22,7 @@ module.exports = async ctx => {
     const coinPrice = coinData.market_data.current_price.usd;
     const coinRank = coinData.market_cap_rank;
     const coinPercentageChanges = coinData.market_data.price_change_percentage_24h;
-    const coinChanges = Math.round(coinData.market_data.price_change_24h_in_currency.usd);
+    const coinChanges = Math.round(coinData.market_data.price_change_24h_in_currency.usd * 1000) / 1000;
     const UTCDate = getDate.getUTCDate();
     const IRDate = getDate.getIRDate();
 
