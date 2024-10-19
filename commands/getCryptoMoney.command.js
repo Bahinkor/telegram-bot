@@ -20,8 +20,13 @@ module.exports = async ctx => {
     }
 
     const coinPrice = coinData.market_data.current_price.usd;
+    const coinRank = coinData.market_cap_rank;
+    const coinPercentageChanges = coinData.market_data.price_change_percentage_24h;
+    const coinChanges = Math.round(coinData.market_data.price_change_24h_in_currency.usd);
     const UTCDate = getDate.getUTCDate();
     const IRDate = getDate.getIRDate();
 
-    ctx.reply(`💰 1 ${coinData.name} = $${coinPrice}\n💵 Rank: ${coinData.market_cap_rank}\n\n🕐 UTC Date: ${UTCDate}\n🕐 IR Date: ${IRDate}`);
+    const textPattern = `💰 1 ${coinData.name} = $${coinPrice}\n💵 Market Rank: ${coinRank}\n\n📍 Percentage of changes in the last 24 hours: ${coinPercentageChanges}%\n📍 Changes in the last 24 hours: $${coinChanges}\n\n🕐 UTC Date: ${UTCDate}\n🕐 IR Date: ${IRDate}`;
+
+    ctx.reply(textPattern);
 };
