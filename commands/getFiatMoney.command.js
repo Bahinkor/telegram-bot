@@ -1,5 +1,6 @@
 const fiatMoneyController = require("./../controllers/fiatMoney.controller");
 const fiatConverter = require("./../utils/fiatConverter.util");
+const getDate = require("../utils/getDate.util");
 
 module.exports = async ctx => {
     try {
@@ -16,10 +17,22 @@ module.exports = async ctx => {
         }
 
         const mainFiatName = fiatConverter(fiatName);
-        const fiatData = await fiatMoneyController.getFiatData(mainFiatName || fiatName);
-        const IRRData = await fiatMoneyController.getIRRData();
+        const oneFiatData = await fiatMoneyController.getFiatData(mainFiatName || fiatName);
+        const oneIRTData = await fiatMoneyController.getIRTData();
 
-        ctx.reply(`fiat: ${fiatData} | irr: ${IRRData}`);
+        if (!oneFiatData || !oneIRTData) {
+            ctx.reply("No information found! Please make sure the currency name is correct.");
+            return false;
+        }
+
+        const fiatPrice = Math.round(oneFiatData * numberFiat * 100) / 100;
+        const IRTPrice = Math.round(fiatPrice * oneIRTData).toLocaleString();
+        const UTCDate = getDate.getUTCDate();
+        const IRDate = getDate.getIRDate();
+
+        const textPattern = `💰 ${numberFiat} ${fiatName.toUpperCase()} = $${fiatPrice}\n💵 ${numberFiat} ${fiatName.toUpperCase()} to IRT = ${IRTPrice}\n\n⏳ UTC Date: ${UTCDate}\n⌛ IR Date: ${IRDate}`;
+
+        ctx.reply(textPattern);
 
     } catch (err) {
         console.log(`get fiat money command error => ${err}`);

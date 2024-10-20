@@ -12,7 +12,7 @@ exports.getFiatData = async fiatName => {
     }
 };
 
-exports.getIRRData = async () => {
+exports.getIRTData = async () => {
     try {
         const res = await fetch("https://api.tetherland.com/currencies");
         const data = await res.json();
