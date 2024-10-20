@@ -6,6 +6,7 @@ const addToGroupCommand = require("./commands/addToGroup.command");
 const newGroupWelcomeMessageCommand = require("./commands/newGroupWelcomeMessage.command");
 const getCryptoMoneyCommand = require("./commands/getCryptoMoney.command");
 const getFiatMoneyCommand = require("./commands/getFiatMoney.command");
+const dateCommand = require("./commands/date.command");
 
 dotenv.config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -16,6 +17,7 @@ bot.action("addToGroup", addToGroupCommand);
 bot.on("new_chat_members", newGroupWelcomeMessageCommand);
 bot.hears(/^\/crypto */i, getCryptoMoneyCommand);
 bot.hears(/^\/fiat */i, getFiatMoneyCommand);
+bot.hears(/\/time/i, dateCommand);
 
 bot.launch()
     .then(() => console.log("Bot is running..."))
