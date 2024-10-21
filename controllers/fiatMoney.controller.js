@@ -1,6 +1,6 @@
 exports.getFiatData = async fiatName => {
     try {
-        const res = await fetch(`https://api.currencylayer.com/convert?access_key=74f4ca0d52b0d8572fea5ae571fd0b13&from=${fiatName}&to=USD&amount=1`);
+        const res = await fetch(`https://api.currencylayer.com/convert?access_key=${process.env.FIAT_TOKEN}&from=${fiatName}&to=USD&amount=1`);
         const data = await res.json();
 
         if (!data.success) return false;
