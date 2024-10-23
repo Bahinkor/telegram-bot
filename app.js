@@ -9,6 +9,7 @@ const getFiatMoneyCommand = require("./commands/getFiatMoney.command");
 const dateCommand = require("./commands/date.command");
 const echoCommand = require("./commands/echo.command");
 const garbageCommand = require("./commands/garbage.command");
+const memeCommand = require("./commands/meme.command");
 
 dotenv.config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -21,6 +22,7 @@ bot.hears(/^\/crypto .*/i, getCryptoMoneyCommand);
 bot.hears(/^\/fiat .*/i, getFiatMoneyCommand);
 bot.hears(/\/time/i, dateCommand);
 bot.hears(/^\/echo .*/i, echoCommand);
+bot.hears(/^\/meme$/i, memeCommand);
 bot.on("text", garbageCommand);
 
 bot.launch()
