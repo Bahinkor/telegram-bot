@@ -11,8 +11,8 @@ module.exports = async ctx => {
             }
 
             ctx.reply(data.setup);
-            setTimeout(() => {
-                return ctx.reply(data.delivery);
+            return setTimeout(() => {
+                ctx.reply(data.delivery);
             }, 500);
         }
 
