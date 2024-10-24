@@ -1,4 +1,4 @@
-# Sabzlearn Backend Clone
+# Telegram Bot
 
 A Telegram bot developed as a personal project that performs tasks by entering relevant commands. Bot is developed with
 NodeJS and Telegraf library.
